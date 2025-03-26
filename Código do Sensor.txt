@@ -1,0 +1,24 @@
+// Definição dos pinos
+const int sensorPIR = 2;   // Pino digital conectado ao OUT do sensor PIR
+const int ledPin    = 13;  // Pino digital conectado ao LED
+
+void setup() {
+  pinMode(sensorPIR, INPUT);  // Configura o sensor como entrada
+  pinMode(ledPin, OUTPUT);    // Configura o LED como saída
+  Serial.begin(9600);         // Inicializa a comunicação serial (opcional)
+}
+
+void loop() {
+  int sensorState = digitalRead(sensorPIR);  // Lê o estado do sensor PIR
+  
+  // Se movimento for detectado, acende o LED
+  if(sensorState == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Movimento detectado!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("Sem movimento.");
+  }
+  
+  delay(500);  // Pequena pausa para estabilidade
+}
